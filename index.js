@@ -16,7 +16,7 @@ The main goal is to facilitate cross-origin requests while enforcing specific se
 // Configuration: Whitelist and Blacklist (not used in this version)
 // whitelist = [ "^http.?://www.zibri.org$", "zibri.org$", "test\\..*" ];  // regexp for whitelisted urls
 const blacklistUrls = [];           // regexp for blacklisted urls
-const whitelistOrigins = [ ".*" ];   // regexp for whitelisted origins
+const whitelistOrigins = [ "^https://mpv-easy\\.github\\.io$" ];   // regexp for whitelisted origins
 
 // Function to check if a given URI or origin is listed in the whitelist or blacklist
 function isListedInWhitelist(uri, listing) {
@@ -38,7 +38,7 @@ function isListedInWhitelist(uri, listing) {
 addEventListener("fetch", async event => {
     event.respondWith((async function() {
         const isPreflightRequest = (event.request.method === "OPTIONS");
-        
+
         const originUrl = new URL(event.request.url);
 
         // Function to modify headers to enable CORS
